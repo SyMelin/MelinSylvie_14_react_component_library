@@ -1,10 +1,11 @@
+import React from 'react'
 import { useEffect } from 'react'
 import { useDispatch } from 'react-redux'
-import { setModalState } from '../../utils/features/modal'
-import './ModalForImport.css'
+import { setModalState } from './modal.js'
+import './Modal.css'
 
 
-function ModalForImport({
+function Modal({
         id,
         children,
         escapeClose= true,      // Allows the user to close the modal by pressing `ESC`
@@ -112,4 +113,4 @@ function ModalForImport({
         </div>
     )
 }
-export default ModalForImport
+export default Modal
