@@ -1,6 +1,6 @@
 {
   "name": "@symelin/react-component-library",
-  "version": "0.2.0",
+  "version": "0.5.0",
   "dependencies": {},
   "scripts": {
     "start": "react-scripts start",
@@ -8,7 +8,7 @@
     "eject": "react-scripts eject",
     "clean": "rm -rf dist",
     "prepare-build": "npm run clean && NODE_ENV=production babel src/lib --out-dir dist --ignore 'src/lib/**/*.text.js'",
-    "copy": "cp package.json dist/ && cp README.md dist/",
+    "copy": "cp package.json dist/ && cp README.md dist/ && cp src/lib/Modal/Modal.css dist/Modal/",
     "build": "npm run prepare-build && npm run copy"
   },
   "eslintConfig": {
