@@ -13,7 +13,13 @@ var _reactRedux = require("react-redux");
 
 var _modal = require("./modal.js");
 
+var _selector = require("./selector.js");
+
+var _ModalContent = _interopRequireDefault(require("../ModalContent"));
+
 require("./Modal.css");
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 function _getRequireWildcardCache(nodeInterop) { if (typeof WeakMap !== "function") return null; var cacheBabelInterop = new WeakMap(); var cacheNodeInterop = new WeakMap(); return (_getRequireWildcardCache = function _getRequireWildcardCache(nodeInterop) { return nodeInterop ? cacheNodeInterop : cacheBabelInterop; })(nodeInterop); }
 
@@ -29,37 +35,73 @@ function Modal(_ref) {
       _ref$closeText = _ref.closeText,
       closeText = _ref$closeText === void 0 ? "Close" : _ref$closeText,
       _ref$blockerClass = _ref.blockerClass,
-      blockerClass = _ref$blockerClass === void 0 ? "modal" : _ref$blockerClass,
+      blockerClass = _ref$blockerClass === void 0 ? "blocker" : _ref$blockerClass,
       _ref$modalClass = _ref.modalClass,
       modalClass = _ref$modalClass === void 0 ? "modal" : _ref$modalClass,
       _ref$closeButtonClass = _ref.closeButtonClass,
       closeButtonClass = _ref$closeButtonClass === void 0 ? "" : _ref$closeButtonClass,
       _ref$showCloseButton = _ref.showCloseButton,
       showCloseButton = _ref$showCloseButton === void 0 ? true : _ref$showCloseButton,
-      _ref$handleCloseModal = _ref.handleCloseModal,
-      handleCloseModal = _ref$handleCloseModal === void 0 ? null : _ref$handleCloseModal,
+      _ref$handleModalBefor = _ref.handleModalBeforeBlock,
+      handleModalBeforeBlock = _ref$handleModalBefor === void 0 ? null : _ref$handleModalBefor,
+      _ref$handleModalBlock = _ref.handleModalBlock,
+      handleModalBlock = _ref$handleModalBlock === void 0 ? null : _ref$handleModalBlock,
+      _ref$hanleModalBefore = _ref.hanleModalBeforeOpen,
+      hanleModalBeforeOpen = _ref$hanleModalBefore === void 0 ? null : _ref$hanleModalBefore,
+      _ref$handleModalOpen = _ref.handleModalOpen,
+      handleModalOpen = _ref$handleModalOpen === void 0 ? null : _ref$handleModalOpen,
+      _ref$handleModalBefor2 = _ref.handleModalBeforeClose,
+      handleModalBeforeClose = _ref$handleModalBefor2 === void 0 ? null : _ref$handleModalBefor2,
+      _ref$handleModalClose = _ref.handleModalClose,
+      handleModalClose = _ref$handleModalClose === void 0 ? null : _ref$handleModalClose,
+      _ref$handleModalAfter = _ref.handleModalAfterClose,
+      handleModalAfterClose = _ref$handleModalAfter === void 0 ? null : _ref$handleModalAfter,
       _ref$fadeDuration = _ref.fadeDuration,
       fadeDuration = _ref$fadeDuration === void 0 ? null : _ref$fadeDuration,
       _ref$fadeDelay = _ref.fadeDelay,
       fadeDelay = _ref$fadeDelay === void 0 ? 1.0 : _ref$fadeDelay;
   var dispatch = (0, _reactRedux.useDispatch)();
+  var modal = (0, _reactRedux.useSelector)(_selector.selectModal);
+  var modalCanBeOpen = modal.modalCanBeOpen;
 
-  var fadingOut = function fadingOut() {
+  var handleFadingEffect = function handleFadingEffect() {
+    var modal = document.getElementById("".concat(id, "-").concat(modalClass));
     var blocker = document.getElementById(id);
+    modal.classList.remove('fadingIn');
     blocker.classList.remove('fadingIn');
     blocker.classList.add('fadingOut');
     setTimeout(function () {
       blocker.classList.remove('fadingOut');
-      blocker.classList.add('fadingIn');
     }, fadeDuration);
   };
 
   var closeModal = function closeModal() {
-    fadingOut();
-    setTimeout(function () {
+    dispatch((0, _modal.setModalStatus)('modalIsAboutToClose'));
+    dispatch((0, _modal.setBlockerStatus)('blockerIsAboutToClose'));
+
+    if (handleModalBeforeClose) {
+      handleModalBeforeClose();
+    }
+
+    handleFadingEffect();
+    dispatch((0, _modal.setModalStatus)('modalIsClosing'));
+
+    if (handleModalClose) {
+      handleModalClose();
+    }
+
+    var timerCloseModal = setTimeout(function () {
       dispatch((0, _modal.setModalState)());
+      dispatch((0, _modal.setModalPermission)(false));
+      dispatch((0, _modal.setBlockerStatus)("blockerIsClosed"));
+      dispatch((0, _modal.setModalStatus)("modalIsClosed"));
+
+      if (handleModalAfterClose) {
+        handleModalAfterClose();
+      }
+
+      return clearTimeout(timerCloseModal);
     }, fadeDuration);
-    handleCloseModal();
   };
 
   var handleKeyPress = function handleKeyPress(e) {
@@ -76,17 +118,49 @@ function Modal(_ref) {
       };
     }
   }, []);
+  (0, _react.useEffect)(function () {
+    if (handleModalBeforeBlock) {
+      handleModalBeforeBlock();
+    }
+
+    dispatch((0, _modal.setBlockerStatus)('blockerIsOpening'));
+    var timerBlocker = setTimeout(function () {
+      dispatch((0, _modal.setBlockerStatus)('blockerIsOpen'));
+
+      if (handleModalBlock) {
+        handleModalBlock();
+      }
+
+      return function () {
+        return clearTimeout(timerBlocker);
+      };
+    }, fadeDuration);
+    var delayForOpeningModal = fadeDelay * fadeDuration;
+    var timerModal = setTimeout(function () {
+      dispatch((0, _modal.setModalPermission)(true));
+      dispatch((0, _modal.setModalStatus)('modalIsAboutToOpen'));
+      return function () {
+        return clearTimeout(timerModal);
+      };
+    }, delayForOpeningModal);
+  }, []);
   return /*#__PURE__*/_react.default.createElement("div", {
     id: id,
     className: "".concat(blockerClass, " fadingIn"),
     onClick: clickClose ? closeModal : null
-  }, /*#__PURE__*/_react.default.createElement("style", null, "  \n                    .fadingIn {\n                        animation: blockerFadeIn ".concat(fadeDuration, "ms;\n                    }\n\n                    .fadingOut {\n                        animation: blockerFadeOut ").concat(fadeDuration, "ms;\n                    }\n\n                    @keyframes blockerFadeIn {\n                        0% { opacity: 0; }\n                        100% { opacity: 1; }\n                    }\n\n                    @keyframes blockerFadeOut {\n                        0% { opacity: 1; }\n                        100% { opacity: 0; }\n                    }\n                ")), /*#__PURE__*/_react.default.createElement("div", {
-    className: modalClass
-  }, /*#__PURE__*/_react.default.createElement("style", null, "\n                        @keyframes modalFadeIn {\n                            0% { opacity: 0; }\n                            ".concat(fadeDelay / (1 + fadeDelay) * 100, "% { opacity: 0; }\n                            100% { opacity: 1; }\n                        }\n                    ")), showCloseButton ? /*#__PURE__*/_react.default.createElement("button", {
-    type: "button",
-    className: "close-modal ".concat(closeButtonClass),
-    onClick: clickClose ? null : closeModal
-  }, "x ", closeText) : null, children));
+  }, /*#__PURE__*/_react.default.createElement("style", null, "  \n                    .fadingIn {\n                        animation: blockerFadeIn ".concat(fadeDuration, "ms;\n                    }\n\n                    .fadingOut {\n                        animation: blockerFadeOut ").concat(fadeDuration, "ms;\n                    }\n\n                    @keyframes blockerFadeIn {\n                        0% { opacity: 0; }\n                        100% { opacity: 1; }\n                    }\n\n                    @keyframes blockerFadeOut {\n                        0% { opacity: 1; }\n                        100% { opacity: 0; }\n                    }\n                ")), modalCanBeOpen ? /*#__PURE__*/_react.default.createElement(_ModalContent.default, {
+    id: id,
+    children: children,
+    clickClose: clickClose,
+    closeText: closeText,
+    modalClass: modalClass,
+    closeButtonClass: closeButtonClass,
+    showCloseButton: showCloseButton,
+    fadeDuration: fadeDuration,
+    closeModal: closeModal,
+    handleModalBeforeOpen: hanleModalBeforeOpen,
+    handleModalOpen: handleModalOpen
+  }) : null);
 }
 
 var _default = Modal;
