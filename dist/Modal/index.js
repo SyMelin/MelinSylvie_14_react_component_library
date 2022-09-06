@@ -72,6 +72,7 @@ function Modal(_ref) {
     blocker.classList.add('fadingOut');
     setTimeout(function () {
       blocker.classList.remove('fadingOut');
+      blocker.classList.add('fadingIn');
     }, fadeDuration);
   };
 
