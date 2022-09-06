@@ -1,6 +1,6 @@
 {
   "name": "@symelin/react-component-library",
-  "version": "0.5.0",
+  "version": "0.7.0",
   "dependencies": {},
   "scripts": {
     "start": "react-scripts start",
