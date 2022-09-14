@@ -17,6 +17,7 @@ function ModalButton(_ref) {
   return /*#__PURE__*/_react.default.createElement("button", {
     type: "button",
     className: "close-modal ".concat(closeButtonClass),
+    "data-testid": "close-modal",
     onClick: clickClose ? null : closeModal
   }, closeText);
 }

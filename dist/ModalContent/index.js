@@ -54,7 +54,8 @@ function ModalContent(_ref) {
   }, []);
   return /*#__PURE__*/_react.default.createElement("div", {
     id: "".concat(id, "-").concat(modalClass),
-    className: "".concat(modalClass, " fadingIn")
+    className: "".concat(modalClass, " fadingIn"),
+    "data-testid": "modal-content"
   }, showCloseButton ? /*#__PURE__*/_react.default.createElement(_ModalButton.default, {
     clickClose: clickClose,
     closeText: closeText,

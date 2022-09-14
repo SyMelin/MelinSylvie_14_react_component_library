@@ -16,32 +16,40 @@ var initialState = {
   modal: {
     status: 'modalIsClosed'
   }
-}; // Action creators
+};
 
-var setModalState = (0, _toolkit.createAction)('modal/isOpen');
-exports.setModalState = setModalState;
-var setModalPermission = (0, _toolkit.createAction)('modal/canBeOpen');
-exports.setModalPermission = setModalPermission;
-var setBlockerStatus = (0, _toolkit.createAction)('modal/setBlockerStatus');
-exports.setBlockerStatus = setBlockerStatus;
-var setModalStatus = (0, _toolkit.createAction)('modal/setModalStatus'); // Reducer creator
+var _createSlice = (0, _toolkit.createSlice)({
+  name: 'modal',
+  initialState: initialState,
+  reducers: {
+    setModalState: function setModalState(draft) {
+      draft.modalIsActive = !draft.modalIsActive;
+      return;
+    },
+    setModalPermission: function setModalPermission(draft, action) {
+      draft.modalCanBeOpen = action.payload;
+      return;
+    },
+    setBlockerStatus: function setBlockerStatus(draft, action) {
+      draft.blocker.status = action.payload;
+      return;
+    },
+    setModalStatus: function setModalStatus(draft, action) {
+      draft.modal.status = action.payload;
+      return;
+    }
+  }
+}),
+    actions = _createSlice.actions,
+    reducer = _createSlice.reducer;
 
+var setModalState = actions.setModalState,
+    setModalPermission = actions.setModalPermission,
+    setBlockerStatus = actions.setBlockerStatus,
+    setModalStatus = actions.setModalStatus;
 exports.setModalStatus = setModalStatus;
-
-var _default = (0, _toolkit.createReducer)(initialState, function (builder) {
-  return builder.addCase(setModalState, function (draft) {
-    draft.modalIsActive = !draft.modalIsActive;
-    return;
-  }).addCase(setModalPermission, function (draft, action) {
-    draft.modalCanBeOpen = action.payload;
-    return;
-  }).addCase(setBlockerStatus, function (draft, action) {
-    draft.blocker.status = action.payload;
-    return;
-  }).addCase(setModalStatus, function (draft, action) {
-    draft.modal.status = action.payload;
-    return;
-  });
-});
-
+exports.setBlockerStatus = setBlockerStatus;
+exports.setModalPermission = setModalPermission;
+exports.setModalState = setModalState;
+var _default = reducer;
 exports.default = _default;

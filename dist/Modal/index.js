@@ -27,6 +27,8 @@ function _interopRequireWildcard(obj, nodeInterop) { if (!nodeInterop && obj && 
 
 function Modal(_ref) {
   var id = _ref.id,
+      _ref$dataTestid = _ref.dataTestid,
+      dataTestid = _ref$dataTestid === void 0 ? "blocker" : _ref$dataTestid,
       children = _ref.children,
       _ref$escapeClose = _ref.escapeClose,
       escapeClose = _ref$escapeClose === void 0 ? true : _ref$escapeClose,
@@ -147,6 +149,7 @@ function Modal(_ref) {
   }, []);
   return /*#__PURE__*/_react.default.createElement("div", {
     id: id,
+    "data-testid": dataTestid,
     className: "".concat(blockerClass, " fadingIn"),
     onClick: clickClose ? closeModal : null
   }, /*#__PURE__*/_react.default.createElement("style", null, "  \n                    .fadingIn {\n                        animation: blockerFadeIn ".concat(fadeDuration, "ms;\n                    }\n\n                    .fadingOut {\n                        animation: blockerFadeOut ").concat(fadeDuration, "ms;\n                    }\n\n                    @keyframes blockerFadeIn {\n                        0% { opacity: 0; }\n                        100% { opacity: 1; }\n                    }\n\n                    @keyframes blockerFadeOut {\n                        0% { opacity: 1; }\n                        100% { opacity: 0; }\n                    }\n                ")), modalCanBeOpen ? /*#__PURE__*/_react.default.createElement(_ModalContent.default, {
