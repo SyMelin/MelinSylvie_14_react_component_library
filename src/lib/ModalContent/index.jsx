@@ -40,6 +40,7 @@ function ModalContent({
         <div
             id={`${id}-${modalClass}`}
             className={`${modalClass} fadingIn`}
+            data-testid="modal-content"
         >
             {showCloseButton
                 ? <ModalButton

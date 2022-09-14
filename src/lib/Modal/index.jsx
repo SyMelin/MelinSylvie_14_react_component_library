@@ -8,8 +8,9 @@ import './Modal.css'
 
 
 function Modal({
-        id,
-        children,
+        id,                             // id added to the overlay (blocker).
+        dataTestid="blocker",           // data-testid added to the overlay (blocker).
+        children,                       // Elements as modal content in the <ModalContent /> component
         escapeClose= true,              // Allows the user to close the modal by pressing `ESC`
         clickClose= true,               // Allows the user to close the modal by clicking the overlay
         closeText="Close",              // Text content for the close <button> tag.
@@ -119,6 +120,7 @@ function Modal({
     return (
         <div
             id={id}
+            data-testid={dataTestid}
             className={`${blockerClass} fadingIn`}
             onClick={clickClose ? closeModal : null}
         >

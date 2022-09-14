@@ -5,6 +5,7 @@ function ModalButton({ clickClose, closeText, closeButtonClass, closeModal }) {
         <button
             type='button'
             className={`close-modal ${closeButtonClass}`}
+            data-testid="close-modal"
             onClick={clickClose ? null : closeModal}
         >
             {closeText}
