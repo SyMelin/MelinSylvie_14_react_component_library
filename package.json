@@ -1,7 +1,9 @@
 {
   "name": "@symelin/react-component-library",
   "version": "0.8.0",
-  "dependencies": {},
+  "dependencies": {
+    "@reduxjs/toolkit": "^1.8.5"
+  },
   "scripts": {
     "start": "react-scripts start",
     "test": "react-scripts test",
