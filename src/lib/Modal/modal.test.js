@@ -3,8 +3,8 @@ import modalReducer from './modal'
 
 describe('Modal actions', () => {
     it('should create a setModalState action object', () => {
-        expect(modalActions.setModalState()).toEqual({
-            type: 'modal/setModalState',
+        expect(modalActions.toggleModalState()).toEqual({
+            type: 'modal/toggleModalState',
         })
     })
 
@@ -47,7 +47,7 @@ describe('Modal reducer', () => {
     it('should return toggle modal.modalIsActive', () => {
         const state = { modalIsActive: true }
         const expected = { modalIsActive: false }
-        expect(modalReducer(state, modalActions.setModalState())).toEqual(expected)
+        expect(modalReducer(state, modalActions.toggleModalState())).toEqual(expected)
     })
     it('should return set modal.modalCanBeOpen', () => {
         const expected = { modalCanBeOpen: true }

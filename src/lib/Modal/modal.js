@@ -16,7 +16,7 @@ const { actions, reducer } = createSlice({
     name: 'modal',
     initialState,
     reducers: {
-        setModalState: (draft) => {
+        toggleModalState: (draft) => {
             draft.modalIsActive = !draft.modalIsActive
             return
         },
@@ -36,10 +36,10 @@ const { actions, reducer } = createSlice({
 })
 
 export const {
-    setModalState,
-    setModalPermission,
-    setBlockerStatus,
-    setModalStatus,
+    toggleModalState,      // modal is active or not
+    setModalPermission, // allow the modal content to open/appear
+    setBlockerStatus,   // status of the blocker (overlay)
+    setModalStatus,     // status of the modal's content
 } = actions
 
 export default reducer
