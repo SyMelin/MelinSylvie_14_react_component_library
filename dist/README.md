@@ -23,7 +23,7 @@ For an example of this modal's implementation in a project, you can visit: https
 
 You can install the modal component `<Modal />` (https://github.com/SyMelin/MelinSylvie_14_react_component_library/pkgs/npm/react-component-library) with npm:
 ```
-npm install @symelin/react-component-library@0.13.0 --registry=https://npm.pkg.github.com
+npm install @symelin/react-component-library@0.14.0 --registry=https://npm.pkg.github.com
 ```
 
 ## 3.Implementation of the modal component
