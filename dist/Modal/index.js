@@ -120,7 +120,8 @@ function Modal(_ref) {
         window.removeEventListener("keydown", handleKeyPress);
       };
     }
-  }, []);
+  }, // eslint-disable-next-line
+  []);
   (0, _react.useEffect)(function () {
     if (handleModalBeforeBlock) {
       handleModalBeforeBlock();
@@ -146,7 +147,8 @@ function Modal(_ref) {
         return clearTimeout(timerModal);
       };
     }, delayForOpeningModal);
-  }, []);
+  }, // eslint-disable-next-line
+  []);
   return /*#__PURE__*/_react.default.createElement("div", {
     id: id,
     "data-testid": dataTestid,

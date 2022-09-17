@@ -51,7 +51,8 @@ function ModalContent(_ref) {
         return clearTimeout(timerModal);
       };
     }, fadeDuration);
-  }, []);
+  }, // eslint-disable-next-line
+  []);
   return /*#__PURE__*/_react.default.createElement("div", {
     id: "".concat(id, "-").concat(modalClass),
     className: "".concat(modalClass, " fadingIn"),

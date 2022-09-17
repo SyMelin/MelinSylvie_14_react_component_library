@@ -3,7 +3,7 @@
 Object.defineProperty(exports, "__esModule", {
   value: true
 });
-exports.setModalStatus = exports.setModalState = exports.setModalPermission = exports.setBlockerStatus = exports.default = void 0;
+exports.toggleModalState = exports.setModalStatus = exports.setModalPermission = exports.setBlockerStatus = exports.default = void 0;
 
 var _toolkit = require("@reduxjs/toolkit");
 
@@ -22,7 +22,7 @@ var _createSlice = (0, _toolkit.createSlice)({
   name: 'modal',
   initialState: initialState,
   reducers: {
-    setModalState: function setModalState(draft) {
+    toggleModalState: function toggleModalState(draft) {
       draft.modalIsActive = !draft.modalIsActive;
       return;
     },
@@ -43,13 +43,13 @@ var _createSlice = (0, _toolkit.createSlice)({
     actions = _createSlice.actions,
     reducer = _createSlice.reducer;
 
-var setModalState = actions.setModalState,
+var toggleModalState = actions.toggleModalState,
     setModalPermission = actions.setModalPermission,
     setBlockerStatus = actions.setBlockerStatus,
     setModalStatus = actions.setModalStatus;
 exports.setModalStatus = setModalStatus;
 exports.setBlockerStatus = setBlockerStatus;
 exports.setModalPermission = setModalPermission;
-exports.setModalState = setModalState;
+exports.toggleModalState = toggleModalState;
 var _default = reducer;
 exports.default = _default;
