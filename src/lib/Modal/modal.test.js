@@ -2,7 +2,7 @@ import * as modalActions from './modal'
 import modalReducer from './modal'
 
 describe('Modal actions', () => {
-    it('should create a setModalState action object', () => {
+    it('should create a toggleModalState action object', () => {
         expect(modalActions.toggleModalState()).toEqual({
             type: 'modal/toggleModalState',
         })

@@ -1,7 +1,7 @@
 import React from 'react'
 import { useEffect } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
-import { setModalState, setBlockerStatus, setModalStatus, setModalPermission } from './modal.js'
+import { toggleModalState, setBlockerStatus, setModalStatus, setModalPermission } from './modal.js'
 import { selectModal } from './selector.js'
 import ModalContent from '../ModalContent'
 import './Modal.css'
@@ -63,7 +63,7 @@ function Modal({
         }
 
         const timerCloseModal = setTimeout(function() {
-            dispatch(setModalState())
+            dispatch(toggleModalState())
             dispatch(setModalPermission(false))
             dispatch(setBlockerStatus("blockerIsClosed"))
             dispatch(setModalStatus("modalIsClosed"))

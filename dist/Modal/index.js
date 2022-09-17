@@ -94,7 +94,7 @@ function Modal(_ref) {
     }
 
     var timerCloseModal = setTimeout(function () {
-      dispatch((0, _modal.setModalState)());
+      dispatch((0, _modal.toggleModalState)());
       dispatch((0, _modal.setModalPermission)(false));
       dispatch((0, _modal.setBlockerStatus)("blockerIsClosed"));
       dispatch((0, _modal.setModalStatus)("modalIsClosed"));
