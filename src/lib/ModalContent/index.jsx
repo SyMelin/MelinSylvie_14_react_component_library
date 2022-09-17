@@ -34,7 +34,9 @@ function ModalContent({
 
             return () => clearTimeout(timerModal)
             }, fadeDuration)
-    }, [])
+    },
+    // eslint-disable-next-line
+    [])
         
     return (
         <div

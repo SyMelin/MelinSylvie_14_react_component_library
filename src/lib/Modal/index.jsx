@@ -90,7 +90,9 @@ function Modal({
             window.removeEventListener("keydown", handleKeyPress);
             }
         }
-    }, [])
+    },
+    // eslint-disable-next-line
+    [])
 
     useEffect(() => {
         if (handleModalBeforeBlock) {
@@ -115,7 +117,9 @@ function Modal({
 
             return () => clearTimeout(timerModal)
         }, delayForOpeningModal)
-    }, [])
+    },
+    // eslint-disable-next-line
+    [])
 
     return (
         <div
