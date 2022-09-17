@@ -10,7 +10,7 @@ This project was bootstrapped with [Create React App](https://github.com/faceboo
 
 **Redux Requirements:** Redux is managing the application's state and uses { createSlice } from '@reduxjs/toolkit'. So be sure the component is compatible with the state management implementation of your project.
 
-The component works like a modal and can be customized through the modal's content and CSS.
+The component works like a modal and can be customised through the modal's content and CSS.
 The component is CSS free. So you can customise it at your convinience.
 
 The codebase is available at: https://github.com/SyMelin/MelinSylvie_14_react_component_library.git
@@ -90,7 +90,7 @@ function yourPage() {
 ```
 
 
-If you need to set "position: fixed" in the CSS, you may wrapp the modal component in a wrapper component such as:
+If you need to set "position: fixed" in the CSS, you may wrap the modal component in a wrapper component such as:
 ```
 { modalIsActive
 ? <ModalWrapper className="modalWrapper>
@@ -115,13 +115,13 @@ const modalContentChildren = <balise>TheChildrenOfTheModalContent</balise>
     
 <Modal
     id="yourId"                                 // id added to the overlay (blocker).
-    dataTestid="yourDataTestid",                // data-testid added to the overlay (blocker).
+    dataTestid="yourDataTestid",                // data-testid added to the overlay (blocker). Default: "blocker"
     children={modalContentChildren}             // Elements as modal content
     escapeClose={}                              // Allows the user to close the modal by pressing `ESC`. Default: true
     clickClose={}                               // Allows the user to close the modal by clicking the overlay. Default: true
-    closeText="yourCloseText"                   // Text content for the close <button> tag.
-    blockerClass="yourBlockerClass"             // CSS class added to the overlay (blocker).
-    modalClass="yourModalClass"                 // CSS class added to the element being displayed in the modal.
+    closeText="yourCloseText"                   // Text content for the close <button> tag. Default:"Close"
+    blockerClass="yourBlockerClass"             // CSS class added to the overlay (blocker). Default: "blocker"
+    modalClass="yourModalClass"                 // CSS class added to the element being displayed in the modal. Default: "modal"
     closeButtonClass="yourCloseButtonClass"     // Add additional class(es) to the close <button> tag.
     showCloseButton={}                          // Shows a (X) icon/button in the top-right corner of the displayed element. Default: true
    
