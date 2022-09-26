@@ -1,6 +1,6 @@
 {
   "name": "@symelin/react-component-library",
-  "version": "0.15.0",
+  "version": "0.16.0",
   "dependencies": {
   },
   "scripts": {
@@ -48,11 +48,18 @@
     "redux": "^4.2.0",
     "web-vitals": "^2.1.4"
   },
-  "description": "This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).",
+  "description": "A modal as React component, CSS free. This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).",
   "repository": {
     "type": "git",
     "url": "git+https://github.com/SyMelin/MelinSylvie_14_react_component_library.git"
   },
+  "keywords": [
+    "modal",
+    "react",
+    "component",
+    "customise",
+    "customise"
+  ],
   "author": "symelin",
   "license": "ISC",
   "bugs": {
